@@ -10,9 +10,7 @@ const httpServer = require("http").createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:3000",
-    // allowedHeaders: ["my-custom-header"],
-    // credentials: true,
+    origin: "*",
   },
 });
 
