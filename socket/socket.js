@@ -1,27 +1,14 @@
 const { Streamer } = require("../models/Streamer");
 
 const sockets = (socket) => {
-  console.log("user conect");
-
-  socket.on("get-streamers", async (callback) => {
+  socket.on("get-streamers", async () => {
     try {
       const streamers = await Streamer.find();
       socket.broadcast.emit("updated-streamers", streamers);
       socket.emit("updated-streamers", streamers);
-
-      //   callback({
-      //     status: "OK",
-      //     streamers,
-      //   });
     } catch (error) {
-      //   callback({
-      //     status: "NOK",
-      //   });
+      new Error(error.message);
     }
-  });
-
-  socket.on("disconnect", () => {
-    console.log("user disconnect");
   });
 };
 

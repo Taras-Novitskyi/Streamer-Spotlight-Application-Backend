@@ -7,8 +7,8 @@ const streamerSchema = new Schema(
     platform: String,
     description: String,
     avatar: String,
-    upvotes: { type: Number, default: 0 },
-    downvotes: { type: Number, default: 0 },
+    upvotes: { type: [Schema.Types.String], default: [] },
+    downvotes: { type: [Schema.Types.String], default: [] },
   },
   {
     versionKey: false,
@@ -27,8 +27,8 @@ const streamer = Joi.object({
     .required()
     .messages({ "any.required": "description is a required field" }),
   avatar: Joi.string(),
-  upvotes: Joi.string(),
-  downvotes: Joi.string(),
+  upvotes: Joi.array().items(Joi.string()),
+  downvotes: Joi.array().items(Joi.string()),
 });
 
 const schemas = {

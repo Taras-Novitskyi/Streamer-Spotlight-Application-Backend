@@ -1,16 +1,13 @@
 const express = require("express");
 const app = express();
 const logger = require("morgan");
-const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
-// const WebSocketServer = new require("ws");
 const { Server } = require("socket.io");
 const sockets = require("./socket/socket");
 const streamersRouter = require("./routes/streamer");
 const httpServer = require("http").createServer(app);
 
-const { Streamer } = require("./models/Streamer");
 
 const io = new Server(httpServer, {
   cors: {
@@ -32,7 +29,6 @@ io.on("connection", sockets);
 app.use("/", streamersRouter);
 
 app.use((req, res) => {
-  console.log(404, req.originalUrl);
   res.status(404).json({ message: "Not found" });
 });
 

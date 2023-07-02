@@ -8,8 +8,8 @@ const addStreamer = async (req, res) => {
   const newStreamer = await Streamer.create({
     ...req.body,
     avatar: STREAMER_PHOTO_URL,
-    upvotes: 0,
-    downvotes: 0,
+    upvotes: [],
+    downvotes: [],
   });
 
   res.status(201).json(newStreamer);
