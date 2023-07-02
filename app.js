@@ -8,7 +8,6 @@ const sockets = require("./socket/socket");
 const streamersRouter = require("./routes/streamer");
 const httpServer = require("http").createServer(app);
 
-
 const io = new Server(httpServer, {
   cors: {
     origin: "http://localhost:3000",
